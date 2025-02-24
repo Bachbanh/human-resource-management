@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\File;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (!File::exists(database_path('database.sqlite'))) {
+            File::put(database_path('database.sqlite'), '');
+        }
     }
 }
